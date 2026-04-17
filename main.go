@@ -474,7 +474,7 @@ func main() {
 	fullAddr := fmt.Sprintf("%s:%s", listenHost, port)
 
 	log.Printf("Starting API server on http://%s", fullAddr)
-	log.Printf("Full credit goes to @devilscancry on github :) https://github.com/devilscancry thanks for using this api manager it means alot so please also star the repo")
+	log.Printf("Full credit goes to @mayshecry on github :) https://github.com/mayshecry thanks for using this api manager it means alot so please also star the repo")
 	if err := http.ListenAndServe(fullAddr, nil); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
